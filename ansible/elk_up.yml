@@ -7,7 +7,6 @@
 
 - include: elk.yml
   vars:
-    weave_expose: yes
     build_containers: true
     build_volumes: true
     run_containers: true

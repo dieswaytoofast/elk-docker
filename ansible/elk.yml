@@ -4,6 +4,8 @@
 - hosts: localhost
   become: yes
   become_method: sudo
+  vars:
+    weave_expose: yes
   roles:
     - common
     - weave
