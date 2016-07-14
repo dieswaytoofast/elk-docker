@@ -14,6 +14,7 @@
 	```
 	config.vm.network "forwarded_port", guest: 5601, host: 5601
 	```
+1. **NOTE** : Kibana doesn't create its baseline indexes till there has been at least one logging event.  Once *something* has been logged (e.g., you started `mie`), you can browse to `http://localhost:5601` and mess w/ stuff
 
 ## Playbooks
 ### Names

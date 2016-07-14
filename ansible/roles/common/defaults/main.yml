@@ -33,7 +33,7 @@ containers:
     name: elk-kibana
     dockerfile: elk_kibana.dockerfile
     volume_args: "-v {{ volumes.elk_kibana.name }}:{{ volumes.elk_kibana.data_dir }}"
-    port: 5600
+    port: 5601
     version: 4.5.2
 
 volumes:
