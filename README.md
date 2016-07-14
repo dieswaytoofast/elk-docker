@@ -1,12 +1,19 @@
 ## Usage
 
 ## Installation
+1. Install everything
 
-```
-$ git clone git@github.com:dieswaytoofast/elk-docker.git
-$ cd ansible
-$ ansible-galaxy install -fr requirements.yml
-```
+	```
+	$ git clone git@github.com:dieswaytoofast/elk-docker.git
+	$ cd ansible
+	$ ansible-galaxy install -fr requirements.yml
+	```
+1. Kibana is now available on port **5601**
+	1. If you are on Vagrant, you'll need to forward port 5601 to be able to get at it.  This implies adding something like the following to your Vagrantfile 
+	
+	```
+	config.vm.network "forwarded_port", guest: 5601, host: 5601
+	```
 
 ## Playbooks
 ### Names
