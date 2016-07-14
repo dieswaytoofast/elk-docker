@@ -1,0 +1,41 @@
+---
+
+- name: Teardown Kibana volumes if necessary
+  include: teardown_volume.yml
+  when: teardown_kibana_volumes is defined
+  tags:
+    - teardown_volumes
+    - teardown_kibana_volumes
+
+- name: Teardown the Kibana containers if necessary
+  include: teardown_containers.yml
+  when: teardown_kibana_containers is defined
+  tags:
+    - teardown_containers
+    - teardown_kibana_containers
+
+- name: Build the Kibana volumes
+  include: build_volumes.yml
+  when: build_volumes is defined
+  tags:
+    - kibana
+    - build
+    - build_volumes
+    - build_kibana_volumes
+
+
+- name: Build the Kibana containers
+  include: build_containers.yml
+  when: build_containers is defined
+  tags:
+    - kibana
+    - build
+    - build_kibana
+
+- name: Run the Kibana containers
+  include: run_containers.yml
+  when: run_containers is defined
+  tags:
+    - kibana
+    - run
+    - run_kibana

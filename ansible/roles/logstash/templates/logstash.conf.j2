@@ -1,0 +1,11 @@
+input {
+  gelf {
+        type => "docker"
+        port => {{ containers.elk_logstash.port }}
+        }
+}
+output {
+  elasticsearch {
+        hosts => ["{{ containers.elk_elasticsearch.name }}"]
+        }
+}

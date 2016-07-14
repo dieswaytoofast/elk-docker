@@ -1,0 +1,11 @@
+---
+
+# Stop ELK
+- name: Stop Kibana
+  include: roles/kibana/tasks/teardown_containers.yml
+
+- name: Stop Logstash
+  include: roles/logstash/tasks/teardown_containers.yml
+
+- name: Stop Elasticsearch
+  include: roles/elasticsearch/tasks/teardown_containers.yml

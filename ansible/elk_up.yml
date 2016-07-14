@@ -1,0 +1,13 @@
+#!/usr/bin/env /usr/bin/ansible-playbook
+---
+
+##
+##  Just invokes ELK, but builds the volumes, containers, and then runs them
+##
+
+- include: elk.yml
+  vars:
+    weave_expose: yes
+    build_containers: true
+    build_volumes: true
+    run_containers: true

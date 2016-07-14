@@ -1,0 +1,12 @@
+---
+
+- name: Connect weave to {{ item }}
+  command: "{{ paths.weave }} connect {{ item }}"
+  when: "item != 'localhost' and inventory_hostname == 'localhost'"
+  with_items: "{{ weave_hosts }}"
+  register: result
+
+- debug: var=result
+- debug: msg="weave_hosts = {{ weave_hosts }}, inventory_hostname = {{ inventory_hostname }}"
+
+

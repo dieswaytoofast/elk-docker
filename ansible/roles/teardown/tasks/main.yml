@@ -1,0 +1,9 @@
+---
+
+- include: teardown_elk.yml
+
+- include: teardown_containers.yml
+  when: refresh is defined
+
+- include: teardown_volumes.yml
+  when: refresh is defined

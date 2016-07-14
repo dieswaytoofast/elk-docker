@@ -1,0 +1,9 @@
+---
+
+# Remove the volume
+- include: roles/ansible_docker_utils/tasks/remove_volume.yml
+  vars:
+    docker_name: "{{ volumes.elk_logstash.name }}"
+  register: result
+
+- debug: var=result.stdout_lines

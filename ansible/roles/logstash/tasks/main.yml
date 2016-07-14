@@ -1,0 +1,41 @@
+---
+
+- name: Teardown Logstash volumes if necessary
+  include: teardown_volume.yml
+  when: teardown_logstash_volumes is defined
+  tags:
+    - teardown_volumes
+    - teardown_logstash_volumes
+
+- name: Teardown the Logstash containers if necessary
+  include: teardown_containers.yml
+  when: teardown_logstash_containers is defined
+  tags:
+    - teardown_containers
+    - teardown_logstash_containers
+
+- name: Build the Logstash volumes
+  include: build_volumes.yml
+  when: build_volumes is defined
+  tags:
+    - logstash
+    - build
+    - build_volumes
+    - build_logstash_volumes
+
+
+- name: Build the Logstash containers
+  include: build_containers.yml
+  when: build_containers is defined
+  tags:
+    - logstash
+    - build
+    - build_logstash
+
+- name: Run the Logstash containers
+  include: run_containers.yml
+  when: run_containers is defined
+  tags:
+    - logstash
+    - run
+    - run_logstash

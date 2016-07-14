@@ -1,0 +1,53 @@
+---
+
+
+elk:
+  base_dir: sys
+  dockerfiles_path: "sys/dockerfiles"
+  build_args: --build-arg ELK_ELASTICSEARCH_HOST={{ containers.elk_elasticsearch.name }}
+              --build-arg ELK_ELASTICSEARCH_PORT={{ containers.elk_elasticsearch.port }}
+              --build-arg ELK_LOGSTASH_PORT={{ containers.elk_logstash.port }}
+              --build-arg ELK_KIBANA_PORT={{ containers.elk_kibana.port }}
+  run_args: ""
+
+weave:
+  domain_name: weave.local
+
+containers:
+  elk_elasticsearch:
+    name: elk-elasticsearch
+    dockerfile: elk_elasticsearch.dockerfile
+    port: 9200
+    volume_args: "-v {{ volumes.elk_elasticsearch.name }}:{{ volumes.elk_elasticsearch.data_dir }}"
+    retry_wait: 5
+    retry_count: 6
+    version: 2.3.4
+  elk_logstash:
+    name: elk-logstash
+    dockerfile: elk_logstash.dockerfile
+    port: 12201
+    volume_args: "-v {{ volumes.elk_logstash.name }}:{{ volumes.elk_logstash.data_dir }}"
+    run_command: "logstash -f config-dir/logstash.conf"
+    version: 2.3.4
+  elk_kibana:
+    name: elk-kibana
+    dockerfile: elk_kibana.dockerfile
+    volume_args: "-v {{ volumes.elk_kibana.name }}:{{ volumes.elk_kibana.data_dir }}"
+    port: 5600
+    version: 4.5.2
+
+volumes:
+  elk_elasticsearch:
+    name: elk_elasticsearch_data
+    data_dir: /usr/share/elasticsearch/data
+  elk_logstash:
+    name: elk_logstash_data
+    data_dir: /data
+  elk_kibana:
+    name: elk_kibana_data
+    data_dir: /data
+
+paths:
+  docker: /usr/bin/docker
+  git: /usr/bin/git
+  weave: /usr/local/bin/weave

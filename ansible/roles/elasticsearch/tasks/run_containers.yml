@@ -1,0 +1,41 @@
+---
+
+# Check if the container is running.  If it is, dont' run it
+- name: Check if {{ containers.elk_elasticsearch.name }} is running
+  include: roles/ansible_docker_utils/tasks/is_container_running.yml
+  vars:
+    docker_name: "{{ containers.elk_elasticsearch.name }}"
+
+# Pull the image from ECR
+- name: Pull {{ containers.elk_elasticsearch.name }} from ECR
+  include: roles/aws/tasks/aws_pull_from_ecr.yml
+  vars:
+    aws_image_name: "{{ containers.elk_elasticsearch.name }}"
+    aws_image_tag: "{{ containers.elk_elasticsearch.version }}"
+  when: aws_pull_from_ecr is defined
+
+
+# Run the container if it isn't running
+- name: Launch the container {{ containers.elk_elasticsearch.name }}
+  include: roles/ansible_docker_utils/tasks/run_container.yml
+  vars:
+    docker_name: "{{ containers.elk_elasticsearch.name }}"
+    docker_domain_name: "{{ weave.domain_name }}"
+    docker_volume_args: "{{ containers.elk_elasticsearch.volume_args }}"
+    docker_extra_args: "-d
+                        --restart=always
+                        {{ weave_docker_args }}"
+  register: result
+  when: "not {{docker_container_is_running }}"
+
+- debug: var=result.stdout_lines
+
+
+# Check if ES is up
+- name: Check if {{ containers.elk_elasticsearch.name }} is up
+  include: roles/ansible_docker_utils/tasks/is_elasticsearch_up.yml
+  vars:
+    docker_name: "{{ containers.elk_elasticsearch.name }}"
+    docker_port: "{{ containers.elk_elasticsearch.port }}"
+    docker_retries: "{{ containers.elk_elasticsearch.retry_count }}"
+    docker_delay: "{{ containers.elk_elasticsearch.retry_wait }}"

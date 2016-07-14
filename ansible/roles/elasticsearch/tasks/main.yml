@@ -1,0 +1,41 @@
+---
+
+- name: Teardown ES volumes if necessary
+  include: teardown_volume.yml
+  when: teardown_elasticsearch_volumes is defined
+  tags:
+    - teardown_volumes
+    - teardown_elasticsearch_volumes
+
+- name: Teardown the ES containers if necessary
+  include: teardown_containers.yml
+  when: teardown_elasticsearch_containers is defined
+  tags:
+    - teardown_containers
+    - teardown_elasticsearch_containers
+
+- name: Build the ES volumes
+  include: build_volumes.yml
+  when: build_volumes is defined
+  tags:
+    - elasticsearch
+    - build
+    - build_volumes
+    - build_elasticsearch_volumes
+
+
+- name: Build the ES containers
+  include: build_containers.yml
+  when: build_containers is defined
+  tags:
+    - elasticsearch
+    - build
+    - build_elasticsearch
+
+- name: Run the ES containers
+  include: run_containers.yml
+  when: run_containers is defined
+  tags:
+    - elasticsearch
+    - run
+    - run_elasticsearch

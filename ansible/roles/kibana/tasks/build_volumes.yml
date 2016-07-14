@@ -1,0 +1,13 @@
+---
+
+# These are the volumes used by Kibana to store its data
+# TODO These will end up being ECS thingies
+# ES Volume
+
+- name: Create Kibana data volume
+  include: roles/ansible_docker_utils/tasks/create_volume.yml
+  vars:
+    docker_name: "{{ volumes.elk_kibana.name }}"
+  register: result
+
+#- debug: var=result.stdout_lines

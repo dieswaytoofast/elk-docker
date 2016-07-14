@@ -1,0 +1,11 @@
+---
+
+# Remove the volume
+- name: Teardown kibana volume
+  include: roles/kibana/tasks/teardown_volume.yml
+
+- name: Teardown logstash volume
+  include: roles/logstash/tasks/teardown_volume.yml
+
+- name: Teardown elasticsearch volume
+  include: roles/elasticsearch/tasks/teardown_volume.yml

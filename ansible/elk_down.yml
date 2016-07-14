@@ -1,0 +1,10 @@
+#!/usr/bin/env /usr/bin/ansible-playbook
+---
+
+- hosts: localhost
+  roles:
+    - common
+    - teardown
+
+
+

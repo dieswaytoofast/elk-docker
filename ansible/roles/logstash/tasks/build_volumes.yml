@@ -1,0 +1,13 @@
+---
+
+# These are the volumes used by Logstash to store its data
+# TODO These will end up being ECS thingies
+# ES Volume
+
+- name: Create Logstash data volume
+  include: roles/ansible_docker_utils/tasks/create_volume.yml
+  vars:
+    docker_name: "{{ volumes.elk_logstash.name }}"
+  register: result
+
+#- debug: var=result.stdout_lines

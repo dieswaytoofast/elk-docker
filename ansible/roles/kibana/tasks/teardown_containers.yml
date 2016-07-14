@@ -1,0 +1,11 @@
+---
+
+- name: Stop the Kibana containers
+  include: roles/ansible_docker_utils/tasks/stop_and_remove_container.yml
+  vars:
+    docker_name: "{{ item }}"
+  with_items:
+    - "{{ containers.elk_kibana.name }}"
+  register: result
+
+- debug: var=result.stdout_lines

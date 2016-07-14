@@ -1,0 +1,13 @@
+---
+
+# Elasticsearch
+
+- name: Build the Elasticsearch container
+  include: roles/ansible_docker_utils/tasks/build_container.yml
+  vars:
+    docker_name: "{{ containers.elk_elasticsearch.name }}"
+    docker_dockerfile: "{{ elk.dockerfiles_path }}/{{ containers.elk_elasticsearch.dockerfile }}"
+    docker_build_args: "{{ elk.build_args }}"
+    docker_base_dir: "{{ elk.base_dir }}"
+
+#- debug: var=docker_result.stdout_lines

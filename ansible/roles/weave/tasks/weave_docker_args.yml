@@ -1,0 +1,13 @@
+---
+
+- name: Get the DNS args
+  command: "{{ paths.weave }} dns-args"
+  register: result
+
+- debug: var=result.stdout
+
+- name: Export Weave args for use by other services
+  set_fact:
+    weave_docker_args: --net=weave {{ result.stdout }}
+
+- debug: var=weave_docker_args
