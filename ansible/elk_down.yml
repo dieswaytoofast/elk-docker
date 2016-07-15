@@ -4,6 +4,8 @@
 - hosts: localhost
   roles:
     - common
+    - ansible_docker_utils
+    - ansible_weave
     - teardown
 
 
