@@ -1,8 +1,0 @@
----
-
-# Weave
-- name: Download and Install weave
-  get_url:
-    url: https://git.io/weave
-    dest: "{{ paths.weave }}"
-    mode: 755

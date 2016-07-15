@@ -8,3 +8,6 @@
 - name: ansible_docker_utils
   src: https://github.com/dieswaytoofast/ansible_docker_utils
 
+- name: ansible_weave
+  src: https://github.com/dieswaytoofast/ansible_weave
+

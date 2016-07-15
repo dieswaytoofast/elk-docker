@@ -1,0 +1,16 @@
+---
+
+- include: setup_apt.yml
+  tags:
+    - baseline
+    - setup
+    - apt
+
+- include: setup_python.yml
+  tags:
+    - baseline
+    - setup
+    - python
+
+
+

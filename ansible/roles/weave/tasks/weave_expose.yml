@@ -1,8 +1,0 @@
----
-
-- name: Expose Weave ports
-  command: "{{ paths.weave }} expose"
-  register: result
-
-- debug: var=result.stdout_lines
-
