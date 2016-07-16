@@ -81,6 +81,7 @@ venv/
 # Ansible galaxy roles
 ansible_docker/
 ansible_docker_utils/
+ansible_weave/
 
 # test files
 aws.sh
