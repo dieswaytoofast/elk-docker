@@ -1,0 +1,23 @@
+#!/usr/bin/env /usr/bin/ansible-playbook
+---
+
+##
+##  Build the containers, and then push them to ECR
+##
+
+# Then pull the containers
+- include: elk.yml
+  vars:
+    build_containers: yes
+
+# And push to ECR
+- hosts: localhost
+  vars_files:
+    - ansible_aws_params.yml
+  roles:
+    - common
+    - { role: ansible_aws, aws_login_to_ecr: yes }
+    - { role: ansible_aws, aws_push_to_ecr: yes, aws_image_name: "{{ containers.elk_kibana.name }}", aws_image_tag: "{{ containers.elk_kibana.version }}" }
+    - { role: ansible_aws, aws_push_to_ecr: yes, aws_image_name: "{{ containers.elk_logstash.name }}", aws_image_tag: "{{ containers.elk_logstash.version }}" }
+    - { role: ansible_aws, aws_push_to_ecr: yes, aws_image_name: "{{ containers.elk_elasticsearch.name }}", aws_image_tag: "{{ containers.elk_elasticsearch.version }}" }
+

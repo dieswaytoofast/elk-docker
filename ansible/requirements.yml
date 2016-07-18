@@ -11,3 +11,6 @@
 - name: ansible_weave
   src: https://github.com/dieswaytoofast/ansible_weave
 
+- name: ansible_aws
+  src: https://github.com/dieswaytoofast/ansible_aws
+

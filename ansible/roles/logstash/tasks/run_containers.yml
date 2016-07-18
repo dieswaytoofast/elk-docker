@@ -8,7 +8,7 @@
 
 # Pull the image from ECR
 - name: Pull {{ containers.elk_logstash.name }} from ECR
-  include: roles/aws/tasks/aws_pull_from_ecr.yml
+  include: roles/ansible_aws/tasks/aws_pull_from_ecr.yml
   vars:
     aws_image_name: "{{ containers.elk_logstash.name }}"
     aws_image_tag: "{{ containers.elk_logstash.version }}"

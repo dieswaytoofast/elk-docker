@@ -12,6 +12,8 @@ elk:
 
 weave:
   domain_name: weave.local
+  group_name: mie
+  launch_wait: 3
 
 containers:
   elk_elasticsearch:

@@ -14,12 +14,15 @@
 	```
 	config.vm.network "forwarded_port", guest: 5601, host: 5601
 	```
-1. **NOTE** : Kibana doesn't create its baseline indexes till there has been at least one logging event.  Once *something* has been logged (e.g., you started `mie`), you can browse to `http://localhost:5601` and mess w/ stuff
+1. **NOTE - Kibana** : Kibana doesn't create its baseline indexes till there has been at least one logging event.  Once *something* has been logged (e.g., you started `mie`), you can browse to `http://localhost:5601` and mess w/ stuff
 
+1. **NOTE - AWS** : You'll need to create an *ansible_aws_params.yml* file in the ansible directory. For format, look in the *ansible_aws* module (*requirements.yml*).  Also, this presupposes permissions
 ## Playbooks
 ### Names
 1. `elk_up.yml` : Bring elk up locally
 2. `elk_down.yml` : Take elk down locally
+1. `aws_elk_up.yml` : Bring elk up on AWS
+2. `aws_elk_down.yml` : Take elk down on AWS
 
 Some helper playbooks
 
@@ -43,4 +46,18 @@ $ elk_down.yml
 	
 ```
 $ elk_down.yml --extra-vars refresh=true
+```
+
+1. Bringing everything up on AWS
+
+```
+$ cd ansible
+$ sudo ansible-galaxy install -r requirements.yml
+$ aws_elk_up.yml
+```
+1. Taking everything down
+	
+```
+$ aws_elk_down.yml
+	
 ```

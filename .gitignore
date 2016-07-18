@@ -82,6 +82,8 @@ venv/
 ansible_docker/
 ansible_docker_utils/
 ansible_weave/
+ansible_aws/
 
 # test files
 aws.sh
+ansible_aws_params.yml
