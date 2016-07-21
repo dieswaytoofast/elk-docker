@@ -1,0 +1,21 @@
+#!/usr/bin/env /usr/bin/ansible-playbook
+---
+
+# Get info about, and launch other, AWS instances
+- hosts: localhost
+  become: yes
+  become_method: sudo
+  vars_files:
+    - "{{ elk_config_file }}"
+  vars:
+    ansible_aws_get_info: yes
+  roles:
+    - baseline
+    - common
+    - ansible_docker_utils
+    - ansible_weave
+    # Launch service servers
+    - role: ansible_aws
+      ansible_aws_server_type: elk
+      ansible_aws_instance_count: "{{ ansible_aws_servers.elk.count }}"
+      ansible_aws_instance_type: "{{ ansible_aws_servers.elk.instance_type }}"

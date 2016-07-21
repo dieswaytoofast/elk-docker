@@ -1,8 +1,0 @@
-- hosts: localhost
-  sudo: yes
-  vars:
-    - docker_syslog: true
-  roles:
-    - rsyslog
-    - docker
-    - bdd

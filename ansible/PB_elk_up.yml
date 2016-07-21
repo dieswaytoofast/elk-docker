@@ -5,7 +5,7 @@
 ##  Just invokes ELK, but builds the volumes, containers, and then runs them
 ##
 
-- include: elk.yml
+- include: setup_elk.yml
   vars:
     build_containers: true
     build_volumes: true

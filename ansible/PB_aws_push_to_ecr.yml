@@ -1,0 +1,11 @@
+#!/usr/bin/env /usr/bin/ansible-playbook
+---
+
+
+- name: Build all the containers
+  include: setup_elk.yml
+  vars:
+    build_containers: yes
+
+- name: Push the containers to ECR
+  include: aws_push_to_ecr.yml

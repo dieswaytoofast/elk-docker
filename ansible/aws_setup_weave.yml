@@ -1,0 +1,19 @@
+#!/usr/bin/env /usr/bin/ansible-playbook
+---
+
+- hosts: new
+  become: yes
+  become_method: sudo
+  vars_files:
+    - "{{ elk_config_file }}"
+  roles:
+    - baseline
+    - common
+    - ansible_docker_utils
+    - role: ansible_weave
+      #hosts_to_connect: "{{ play_hosts }}"
+      # This is the Bounce Node's private IP
+      weave_root_host: "{{ hostvars['localhost']['ansible_default_ipv4']['address'] }}"
+      weave_launch: yes
+      weave_prime: yes
+      when: inventory_hostname != 'localhost'

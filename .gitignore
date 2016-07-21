@@ -87,3 +87,4 @@ ansible_aws/
 # test files
 aws.sh
 ansible_aws_params.yml
+aws_config.yml

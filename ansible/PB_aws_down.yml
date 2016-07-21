@@ -1,0 +1,8 @@
+#!/usr/bin/env /usr/bin/ansible-playbook
+---
+
+- name: Get info about the elk servers
+  include: aws_get_info.yml
+
+- name: Teardown the elk servers
+  include: aws_teardown_elk.yml

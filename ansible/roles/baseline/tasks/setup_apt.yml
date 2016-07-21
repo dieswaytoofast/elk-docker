@@ -9,6 +9,7 @@
   apt:
     update_cache: yes
     name: "{{ item }}"
+    state: latest
   with_items:
     - build-essential
     - make

@@ -1,0 +1,23 @@
+#!/usr/bin/env /usr/bin/ansible-playbook
+---
+
+- hosts: elk
+  become: yes
+  become_method: sudo
+  vars_files:
+    - "{{ elk_config_file }}"
+  vars:
+    ansible_aws_login_to_ecr: yes
+    ansible_aws_pull_from_ecr: yes
+    run_containers: yes
+  roles:
+    - baseline
+    - common
+    - ansible_docker_utils
+    - ansible_weave
+    - ansible_aws
+
+    # Per instance items
+    - elasticsearch
+    - logstash
+    - kibana

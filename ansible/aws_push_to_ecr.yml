@@ -1,0 +1,13 @@
+#!/usr/bin/env /usr/bin/ansible-playbook
+---
+
+- hosts: localhost
+  vars_files:
+    - "{{ elk_config_file }}"
+  roles:
+    - common
+    - { role: ansible_aws, ansible_aws_login_to_ecr: yes }
+    - { role: ansible_aws, ansible_aws_push_to_ecr: yes, ansible_aws_image_name: "{{ containers.elk_kibana.name }}", ansible_aws_image_tag: "{{ containers.elk_kibana.version }}" }
+    - { role: ansible_aws, ansible_aws_push_to_ecr: yes, ansible_aws_image_name: "{{ containers.elk_logstash.name }}", ansible_aws_image_tag: "{{ containers.elk_logstash.version }}" }
+    - { role: ansible_aws, ansible_aws_push_to_ecr: yes, ansible_aws_image_name: "{{ containers.elk_elasticsearch.name }}", ansible_aws_image_tag: "{{ containers.elk_elasticsearch.version }}" }
+
