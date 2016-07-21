@@ -36,6 +36,8 @@ containers:
     dockerfile: elk_kibana.dockerfile
     volume_args: "-v {{ volumes.elk_kibana.name }}:{{ volumes.elk_kibana.data_dir }}"
     port: 5601
+    retry_wait: 5
+    retry_count: 6
     version: 4.5.2
 
 volumes:
