@@ -28,3 +28,12 @@
                         {{ weave_docker_args }}"
   register: result
   when: "not {{docker_container_is_running }}"
+
+# Check if ES is up
+- name: Check if {{ containers.elk_kibana.name }} is up
+  include: roles/ansible_docker_utils/tasks/is_kibana_up.yml
+  vars:
+    docker_name: "{{ containers.elk_kibana.name }}"
+    docker_port: "{{ containers.elk_kibana.port }}"
+    docker_retries: "{{ containers.elk_kibana.retry_count }}"
+    docker_delay: "{{ containers.elk_kibana.retry_wait }}"
