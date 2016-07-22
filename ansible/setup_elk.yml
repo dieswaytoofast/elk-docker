@@ -4,6 +4,8 @@
 - hosts: localhost
   become: yes
   become_method: sudo
+  vars_files:
+    - "{{ elk_config_file }}"
   roles:
     - baseline
     - common
@@ -12,3 +14,4 @@
     - elasticsearch
     - logstash
     - kibana
+    - ansible_nginx

@@ -1,0 +1,17 @@
+---
+
+- name: Populate and copy the nginx config
+  template:
+    src: nginx.conf.j2
+    dest: "{{ elk.base_dir }}/nginx/nginx.conf"
+
+- name: Build the nginx container
+  include: roles/ansible_docker_utils/tasks/build_container.yml
+  vars:
+    docker_name: "{{ containers.elk_nginx.name }}"
+    docker_dockerfile: "{{ elk.dockerfiles_path }}/{{ containers.elk_nginx.dockerfile }}"
+    docker_build_args: "{{ elk.build_args }}"
+    docker_base_dir: "{{ elk.base_dir }}"
+
+#- debug: var=docker_result.stdout_lines
+

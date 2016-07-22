@@ -1,0 +1,21 @@
+---
+
+# These can be passed on the command line, or be part of a config file. Up to you
+
+# Ports
+ansible_nginx_port_http: 80
+ansible_nginx_port_https: 443
+
+# Certificates
+ansible_nginx_ssl_certificate: your_certificate_name.crt
+ansible_nginx_ssl_certificate_key: your_certificate_name.key
+
+# Proxy
+ansible_nginx_proxy_host_name: the.proxied.host.com  # probably something else
+ansible_nginx_proxy_host_port: 8000     # Or whatever port you actually want
+
+# SSL
+ansible_nginx_use_ssl: false  # Should be true, but that requires certs
+
+# Resolver
+ansible_nginx_resolver: 127.0.0.11  # Or whatever

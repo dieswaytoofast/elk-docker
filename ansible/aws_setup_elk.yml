@@ -21,3 +21,4 @@
     - elasticsearch
     - logstash
     - kibana
+    - ansible_nginx
