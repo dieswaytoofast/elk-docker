@@ -12,7 +12,7 @@
   vars:
     aws_image_name: "{{ containers.elk_nginx.name }}"
     aws_image_tag: "{{ containers.elk_nginx.version }}"
-  when: aws_pull_from_ecr is defined
+  when: ansible_aws_pull_from_ecr is defined
 
 
 # Run the container if it isn't running
