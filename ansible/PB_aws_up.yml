@@ -6,6 +6,9 @@
 ##   Spin up the AWS environment, pull containers from ECR, and launch them
 ##
 
+- name: Get the secrets from AWS S3 (to configure git, build containers, etc.)
+  include: aws_get_secrets.yml
+
 #- name: Build the containers, and push them to ECR (if necessary)
 #  include: aws_elk_push_to_ecr.yml
 
