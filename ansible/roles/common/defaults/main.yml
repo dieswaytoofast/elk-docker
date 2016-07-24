@@ -8,6 +8,8 @@ elk:
               --build-arg ELK_ELASTICSEARCH_PORT={{ containers.elk_elasticsearch.port }}
               --build-arg ELK_LOGSTASH_PORT={{ containers.elk_logstash.port }}
               --build-arg ELK_KIBANA_PORT={{ containers.elk_kibana.port }}
+              --build-arg ELK_NGINX_PORT_HTTP={{ ansible_nginx_port_http }}
+              --build-arg ELK_NGINX_PORT_HTTPS={{ ansible_nginx_port_https }}
   run_args: ""
 
 weave:
@@ -39,6 +41,13 @@ containers:
     retry_wait: 5
     retry_count: 6
     version: 4.5.2
+  elk_nginx:
+    name: elk-nginx
+    dockerfile: elk_nginx.dockerfile
+    volume_args: ""
+    retry_wait: 5
+    retry_count: 6
+    version: 1.11.1
 
 volumes:
   elk_elasticsearch:

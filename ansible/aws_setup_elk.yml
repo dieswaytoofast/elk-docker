@@ -15,9 +15,12 @@
     - common
     - ansible_docker_utils
     - ansible_weave
-    - ansible_aws
+    - role: ansible_aws
+      ansible_aws_load_config: true
+      ansible_aws_config_file: "{{ playbook_dir }}/{{ mie_aws_params_file }}"
 
     # Per instance items
     - elasticsearch
     - logstash
     - kibana
+    - ansible_nginx

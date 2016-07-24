@@ -1,4 +1,4 @@
-FROM kibana:4.5.2
+FROM nginx:1.10.1
 
 ### COMMON FOR ALL CONTAINERS
 
@@ -21,12 +21,10 @@ ENV ELK_NGINX_PORT_HTTPS $ELK_NGINX_PORT_HTTPS
 
 ### END COMMON FOR ALL CONTAINERS ###
 
-# Where is Elasticsearch?
-ENV ELASTICSEARCH_URL http://${ELK_ELASTICSEARCH_HOST}:${ELK_ELASTICSEARCH_PORT}
+ADD nginx/nginx.conf /etc/nginx/
 
-# Copy in the config file
-RUN mkdir -p /config-dir
-COPY kibana/elasticsearch-kibana.json /config-dir/config.js
+ADD nginx/keys /etc/nginx/keys/
 
-EXPOSE $ELK_KIBANA_PORT
+ADD nginx/.htpasswd /etc/nginx/.htpasswd
 
+EXPOSE $ELK_NGINX_PORT_HTTP $ELK_NGINX_PORT_HTTPS

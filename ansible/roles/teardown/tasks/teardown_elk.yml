@@ -9,3 +9,6 @@
 
 - name: Stop Elasticsearch
   include: roles/elasticsearch/tasks/teardown_containers.yml
+
+- name: Stop nginx
+  include: roles/ansible_nginx/tasks/teardown_containers.yml

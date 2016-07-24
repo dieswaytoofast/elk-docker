@@ -79,12 +79,15 @@ venv/
 *.sqlite3
 
 # Ansible galaxy roles
+ansible_aws/
 ansible_docker/
 ansible_docker_utils/
+ansible_secrets/
 ansible_weave/
-ansible_aws/
 
 # test files
 aws.sh
 ansible_aws_params.yml
 aws_config.yml
+aws_params.yml
+foo.yml

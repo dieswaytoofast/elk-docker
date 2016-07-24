@@ -16,6 +16,8 @@
     - ansible_weave
     # Launch service servers
     - role: ansible_aws
+      ansible_aws_load_config: true
+      ansible_aws_config_file: "{{ playbook_dir }}/{{ mie_aws_params_file }}"
       ansible_aws_server_type: elk
       ansible_aws_instance_count: "{{ ansible_aws_servers.elk.count }}"
       ansible_aws_instance_type: "{{ ansible_aws_servers.elk.instance_type }}"

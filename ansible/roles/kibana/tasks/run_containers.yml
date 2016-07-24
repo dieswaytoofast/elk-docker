@@ -8,11 +8,11 @@
 
 # Pull the image from ECR
 - name: Pull {{ containers.elk_logstash.name }} from ECR
-  include: roles/ansible_aws/tasks/aws_pull_from_ecr.yml
+  include: roles/ansible_aws/tasks/ansible_aws_pull_from_ecr.yml
   vars:
-    aws_image_name: "{{ containers.elk_kibana.name }}"
-    aws_image_tag: "{{ containers.elk_kibana.version }}"
-  when: aws_pull_from_ecr is defined
+    ansible_aws_image_name: "{{ containers.elk_kibana.name }}"
+    ansible_aws_image_tag: "{{ containers.elk_kibana.version }}"
+  when: ansible_aws_pull_from_ecr is defined
 
 
 # Run the container if it isn't running
@@ -23,13 +23,12 @@
     docker_domain_name: "{{ weave.domain_name }}"
     docker_volume_args: "{{ containers.elk_kibana.volume_args }}"
     docker_extra_args: "-d
-                        -p {{ containers.elk_kibana.port }}:{{ containers.elk_kibana.port }}
                         --restart=always
                         {{ weave_docker_args }}"
   register: result
   when: "not {{docker_container_is_running }}"
 
-# Check if ES is up
+# Check if Kibana is up
 - name: Check if {{ containers.elk_kibana.name }} is up
   include: roles/ansible_docker_utils/tasks/is_kibana_up.yml
   vars:
