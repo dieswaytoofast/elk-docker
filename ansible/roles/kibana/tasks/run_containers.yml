@@ -8,11 +8,11 @@
 
 # Pull the image from ECR
 - name: Pull {{ containers.elk_logstash.name }} from ECR
-  include: roles/ansible_aws/tasks/aws_pull_from_ecr.yml
+  include: roles/ansible_aws/tasks/ansible_aws_pull_from_ecr.yml
   vars:
-    aws_image_name: "{{ containers.elk_kibana.name }}"
-    aws_image_tag: "{{ containers.elk_kibana.version }}"
-  when: aws_pull_from_ecr is defined
+    ansible_aws_image_name: "{{ containers.elk_kibana.name }}"
+    ansible_aws_image_tag: "{{ containers.elk_kibana.version }}"
+  when: ansible_aws_pull_from_ecr is defined
 
 
 # Run the container if it isn't running
