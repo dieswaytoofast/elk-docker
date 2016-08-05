@@ -2,16 +2,17 @@
 
 - name: Populate and copy the nginx config
   template:
-    src: nginx.conf.j2
-    dest: "{{ elk.base_dir }}/nginx/nginx.conf"
+    src: "{{ ansible_nginx_base_dir }}/{{ ansible_nginx_templates_dir }}/{{ item }}.j2"
+    dest: "{{ ansible_nginx_base_dir }}/{{ ansible_nginx_nginx_dir }}/{{ item }}"
+  with_items: "{{ ansible_nginx_config_files }}"
 
 - name: Build the nginx container
   include: roles/ansible_docker_utils/tasks/build_container.yml
   vars:
-    docker_name: "{{ containers.elk_nginx.name }}"
-    docker_dockerfile: "{{ elk.dockerfiles_path }}/{{ containers.elk_nginx.dockerfile }}"
-    docker_build_args: "{{ elk.build_args }}"
-    docker_base_dir: "{{ elk.base_dir }}"
+    docker_name: "{{ ansible_nginx_container_name }}"
+    docker_dockerfile: "{{ ansible_nginx_dockerfiles_path }}/{{ ansible_nginx_dockerfile }}"
+    docker_build_args: "{{ ansible_nginx_build_args }}"
+    docker_base_dir: "{{ ansible_nginx_base_dir }}"
 
 #- debug: var=docker_result.stdout_lines
 

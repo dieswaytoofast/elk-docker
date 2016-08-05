@@ -2,6 +2,18 @@
 
 # These can be passed on the command line, or be part of a config file. Up to you
 
+# Directory under which config files are located
+ansible_nginx_base_dir: sys
+ansible_nginx_templates_dir: nginx/templates   # So templates are under sys/nginx/templates/...
+ansible_nginx_nginx_dir: nginx  # So, final files are in sys/nginx/...
+
+# The name for the nginx container
+ansible_nginx_container_name: nginx
+
+# Docker
+ansible_nginx_dockerfiles_path: sys/dockerfiles
+ansible_nginx_dockerfile: nginx.dockerfile
+
 # Ports
 ansible_nginx_port_http: 80
 ansible_nginx_port_https: 443

@@ -21,7 +21,7 @@ ENV ELK_NGINX_PORT_HTTPS $ELK_NGINX_PORT_HTTPS
 
 ### END COMMON FOR ALL CONTAINERS ###
 
-ADD nginx/nginx.conf /etc/nginx/
+ADD nginx/elk_nginx.conf /etc/nginx/nginx.conf.d/elk_nginx.conf
 
 ADD nginx/keys /etc/nginx/keys/
 

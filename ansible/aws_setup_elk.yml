@@ -23,4 +23,13 @@
     - elasticsearch
     - logstash
     - kibana
-    - ansible_nginx
+    - role: ansible_nginx
+      ansible_nginx_container_name: "{{ containers.elk_nginx.name }}"
+      ansible_nginx_container_version: "{{ containers.elk_nginx.version }}"
+      ansible_nginx_volume_args: "{{ containers.elk_nginx.volume_args }}"
+      ansible_nginx_retry_count: "{{ containers.elk_nginx.retry_count }}"
+      ansible_nginx_retry_wait: "{{ containers.elk_nginx.retry_wait }}"
+      ansible_nginx_weave_domain: "{{ weave.domain_name }}"
+      ansible_nginx_weave_docker_args: "{{ weave_docker_args }}"
+      ansible_nginx_dockerfile: "{{ containers.elk_nginx.dockerfile }}"
+      ansible_nginx_build_args: "{{ elk.build_args }}"

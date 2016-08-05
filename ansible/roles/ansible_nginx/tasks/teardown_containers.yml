@@ -5,7 +5,7 @@
   vars:
     docker_name: "{{ item }}"
   with_items:
-    - "{{ containers.elk_nginx.name }}"
+    - "{{ ansible_nginx_container_name }}"
   register: result
 
 - debug: var=result.stdout_lines
