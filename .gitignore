@@ -84,6 +84,7 @@ ansible_docker/
 ansible_docker_utils/
 ansible_secrets/
 ansible_weave/
+ansible_nginx/
 
 # test files
 aws.sh

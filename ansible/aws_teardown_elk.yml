@@ -10,4 +10,5 @@
     - common
     - ansible_docker_utils
     - ansible_weave
-    - teardown
+    - role: teardown
+      ansible_nginx_container_name: "{{ containers.elk_nginx.name }}"

@@ -3,13 +3,11 @@
 # Get the dangling containers
 - include: roles/ansible_docker_utils/tasks/list_dangling_containers.yml
 
-- debug: var=docker_result
-
 # Remove the dangling volumes
 - include: roles/ansible_docker_utils/tasks/remove_image.yml
   vars:
     docker_name: "{{ item }}"
-  with_items: "{{ docker_result }}"
+  with_items: "{{ docker_result | default([])  }}"
   register: result
 
 - debug: var=result.stdout_lines

@@ -11,13 +11,14 @@
 - name: ansible_docker_utils
   src: https://github.com/dieswaytoofast/ansible_docker_utils
 
-
 - name: ansible_secrets
   src: https://github.com/dieswaytoofast/ansible_secrets
 
 - name: ansible_weave
   src: https://github.com/dieswaytoofast/ansible_weave
 
+- name: ansible_nginx
+  src: https://github.com/dieswaytoofast/ansible_nginx
 
 
 
