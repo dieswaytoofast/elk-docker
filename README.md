@@ -16,7 +16,7 @@
 	```
 1. **NOTE - Kibana** : Kibana doesn't create its baseline indexes till there has been at least one logging event.  Once *something* has been logged (e.g., you started `mie`), you can browse to `http://localhost:5601` and mess w/ stuff
 
-1. **NOTE - AWS** : You'll need to create an *aws_config.yml* file in the ansible directory. For format, look in the *ansible_aws* module (*requirements.yml*), and do something like `PB_aws_up.yml --extra-vars mie_config_file=aws_config.yml`   Also, this presupposes permissions.
+1. **NOTE - AWS** : You'll need to create an *aws_config.yml* file in the ansible directory. For format, look in the *ansible_aws* module (*requirements.yml*), and do something like `PB_aws_up.yml --extra-vars elk_config_file=aws_config.yml`   Also, this presupposes permissions.
 ## Playbooks
 ### Names
 1. `PB_elk_up.yml` : Bring elk up locally

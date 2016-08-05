@@ -8,29 +8,29 @@
     - common
     - role: ansible_aws
       ansible_aws_load_config: true
-      ansible_aws_config_file: "{{ playbook_dir }}/{{ mie_aws_params_file }}"
+      ansible_aws_config_file: "{{ playbook_dir }}/{{ elk_aws_params_file }}"
       ansible_aws_login_to_ecr: yes
     - role: ansible_aws
       ansible_aws_load_config: true
-      ansible_aws_config_file: "{{ playbook_dir }}/{{ mie_aws_params_file }}"
+      ansible_aws_config_file: "{{ playbook_dir }}/{{ elk_aws_params_file }}"
       ansible_aws_push_to_ecr: yes
       ansible_aws_image_name: "{{ containers.elk_kibana.name }}"
       ansible_aws_image_tag: "{{ containers.elk_kibana.version }}"
     - role: ansible_aws
       ansible_aws_load_config: true
-      ansible_aws_config_file: "{{ playbook_dir }}/{{ mie_aws_params_file }}"
+      ansible_aws_config_file: "{{ playbook_dir }}/{{ elk_aws_params_file }}"
       ansible_aws_push_to_ecr: yes
       ansible_aws_image_name: "{{ containers.elk_logstash.name }}"
       ansible_aws_image_tag: "{{ containers.elk_logstash.version }}"
     - role: ansible_aws
       ansible_aws_load_config: true
-      ansible_aws_config_file: "{{ playbook_dir }}/{{ mie_aws_params_file }}"
+      ansible_aws_config_file: "{{ playbook_dir }}/{{ elk_aws_params_file }}"
       ansible_aws_push_to_ecr: yes
       ansible_aws_image_name: "{{ containers.elk_elasticsearch.name }}"
       ansible_aws_image_tag: "{{ containers.elk_elasticsearch.version }}"
     - role: ansible_aws
       ansible_aws_load_config: true
-      ansible_aws_config_file: "{{ playbook_dir }}/{{ mie_aws_params_file }}"
+      ansible_aws_config_file: "{{ playbook_dir }}/{{ elk_aws_params_file }}"
       ansible_aws_push_to_ecr: yes
       ansible_aws_image_name: "{{ containers.elk_nginx.name }}"
       ansible_aws_image_tag: "{{ containers.elk_nginx.version }}"
