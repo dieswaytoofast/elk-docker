@@ -3,6 +3,7 @@
 
 elk:
   base_dir: sys
+  dockerfiles_path: sys/dockerfiles
   build_args: --build-arg ELK_ELASTICSEARCH_HOST={{ containers.elk_elasticsearch.name }}
               --build-arg ELK_ELASTICSEARCH_PORT={{ containers.elk_elasticsearch.port }}
               --build-arg ELK_LOGSTASH_PORT={{ containers.elk_logstash.port }}
